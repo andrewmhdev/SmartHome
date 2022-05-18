@@ -22,6 +22,7 @@ class DeviceTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "deviceCell", for: indexPath) as? DeviceTableViewCell else {return UITableViewCell()}
         let device = DeviceController.sharedinstance.devices[indexPath.row]
         cell.updateViews(device: device)
+        cell.delegate = self
 
         return cell
     }
@@ -49,4 +50,20 @@ class DeviceTableViewController: UITableViewController {
     }
     
     
+} // end of class
+extension DeviceTableViewController: DeviceTableViewCellDelegate {
+    func isOnSwitchToggled(_ cell: DeviceTableViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else {return}
+        let device = DeviceController.sharedinstance.devices[indexPath.row]
+        DeviceController.sharedinstance.toggleIsOn(device: device)
+        cell.updateViews(device: device)
+    }
+    
+    
 }
+
+
+
+
+
+
