@@ -21,8 +21,7 @@ class DeviceTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "deviceCell", for: indexPath) as? DeviceTableViewCell else {return UITableViewCell()}
         let device = DeviceController.sharedinstance.devices[indexPath.row]
-    //TODO: create updateviews
-        //cell.updateViews()
+        cell.updateViews(device: device)
 
         return cell
     }
