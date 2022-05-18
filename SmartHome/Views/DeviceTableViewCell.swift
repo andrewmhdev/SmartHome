@@ -7,13 +7,16 @@
 
 import UIKit
 
+protocol DeviceTableViewCellDelegate: AnyObject {
+    func isOnSwitchToggled(_ cell: DeviceTableViewCell)
+}
 class DeviceTableViewCell: UITableViewCell {
     // Outlets
     @IBOutlet weak var deviceNameLabel: UILabel!
     @IBOutlet weak var deviceIsOnSwitch: UISwitch!
     
     
-    
+    weak var delegate: DeviceTableViewCellDelegate?
     
     // helper func
     func updateViews(device: Device) {
@@ -22,6 +25,7 @@ class DeviceTableViewCell: UITableViewCell {
     }
     
     @IBAction func deviceToggleSwitch(_ sender: Any) {
+        delegate?.isOnSwitchToggled(self)
     }
     
     
