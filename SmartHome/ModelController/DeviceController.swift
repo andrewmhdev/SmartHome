@@ -2,70 +2,56 @@
 //  DeviceController.swift
 //  SmartHome
 //
-//  Created by Trevor Adcock on 12/21/21.
+//  Created by Andrew H on 5/18/22.
 //
 
 import Foundation
 
-/// A simple model controller to control the creation, reading and persistence of `Device` instances
 class DeviceController {
     
-    /// A shared instance of the device controller
-    static let shared = DeviceController()
+    //Singleton
+    static let sharedinstance = DeviceController()
     
     init() {
         loadDevices()
     }
-    
-    /// The array of Devices and sourece of truth for the app
+    //SOT
     private(set) var devices: [Device] = []
     
-    /// The URL that Devices are persist to on disk
+    // computed property
     private var devicesURL: URL? {
-        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
-        let url = documentsDirectory.appendingPathComponent("devices.json")
+        guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return nil}
+        let url = documentDirectory.appendingPathComponent("devices.json")
         return url
     }
-    
-    /// Creates a new device, adds it to our array of Devices (source of truth) and persists the device to the local disk
-    /// - Parameter name: The content of the device
+    //CRUD
     func createDevice(name: String) {
-        let newdevice = Device(text: name)
-        devices.append(newdevice)
+        let newDevice = Device(name: name)
+        devices.append(newDevice)
         saveDevices()
     }
-    
     func toggleIsOn(device: Device) {
         device.isOn.toggle()
-        DeviceController.shared.saveDevices()
+        saveDevices()
     }
-    
-    /// Persists the device controllers array of Devices to disk
+    // Persistence
     func saveDevices() {
-        // 1. Get the address to save a file to
-        guard let devicesURL = devicesURL else { return }
+        guard let devicesURL = devicesURL else {return}
         do {
-            // 2. Convert the swift class into JSON data
             let data = try JSONEncoder().encode(devices)
-            // 3. Save the data to the URL from step 1
             try data.write(to: devicesURL)
         } catch {
-            print("Error Saving Devices", error)
+            print("Error saving devices", error)
         }
     }
-    
-    /// Loads  devices that are persist to the local disk and updates the model controllers `devices` property
     func loadDevices() {
-        // 1. Get the address to save a file to
-        guard let devicesURL = devicesURL else { return }
-        do {
-            // 2. Load the raw data from the url
-            let data = try Data(contentsOf: devicesURL)
-            // 3. Convert the raw data into our Swift class
-            let devices = try JSONDecoder().decode([Device].self, from: data)
-            self.devices = devices
-        } catch {
-            print("Error Loading Devices", error)
-        }
+        guard let devicesURL = devicesURL else {return}
+            do {
+                let data = try Data(contentsOf: devicesURL)
+                let devices = try JSONDecoder().decode([Device].self, from: data)
+                self.devices = devices
+            } catch {
+                print("Error loading devices", error)
+            }
     }
 }

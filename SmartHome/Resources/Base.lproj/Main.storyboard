@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yqV-Cz-3qq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yqV-Cz-3qq">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,34 +23,28 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="112"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="aDF-nV-Sbf">
-                                            <rect key="frame" x="28" y="19" width="358" height="74"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="200" translatesAutoresizingMaskIntoConstraints="NO" id="OSj-xS-frl">
+                                            <rect key="frame" x="28" y="46" width="345.5" height="31"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="1000" text="Device Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TMr-I6-nc8">
-                                                    <rect key="frame" x="0.0" y="27" width="301" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="device name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OC2-qZ-V8S">
+                                                    <rect key="frame" x="0.0" y="0.0" width="96.5" height="31"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8Sg-SF-dQT">
-                                                    <rect key="frame" x="309" y="21.5" width="51" height="31"/>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dgd-A4-Ajq">
+                                                    <rect key="frame" x="296.5" y="0.0" width="51" height="31"/>
                                                     <connections>
-                                                        <action selector="deviceIsOnSwitchValueChanged:" destination="Rtd-vj-WqH" eventType="valueChanged" id="cuR-LL-ACO"/>
+                                                        <action selector="deviceToggleSwitch:" destination="Rtd-vj-WqH" eventType="valueChanged" id="UsZ-nw-0lS"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
                                         </stackView>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="aDF-nV-Sbf" firstAttribute="top" secondItem="wzg-PZ-Ffg" secondAttribute="topMargin" constant="8" id="6ld-Ng-egz"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="aDF-nV-Sbf" secondAttribute="trailing" constant="8" id="i3i-bE-mRe"/>
-                                        <constraint firstItem="aDF-nV-Sbf" firstAttribute="leading" secondItem="wzg-PZ-Ffg" secondAttribute="leadingMargin" constant="8" id="oGb-Wi-4MC"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="aDF-nV-Sbf" secondAttribute="bottom" constant="8" id="zQp-ds-izE"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="deviceIsOnSwitch" destination="8Sg-SF-dQT" id="Ise-th-LAb"/>
-                                    <outlet property="deviceNameLabel" destination="TMr-I6-nc8" id="c4S-ig-Xj1"/>
+                                    <outlet property="deviceIsOnSwitch" destination="Dgd-A4-Ajq" id="nNV-UF-9cI"/>
+                                    <outlet property="deviceNameLabel" destination="OC2-qZ-V8S" id="tHx-ip-gE6"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -60,9 +54,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Smart Home" id="pNB-su-pPd">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="krC-5a-7S7">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="2hv-f2-dG8">
                             <connections>
-                                <action selector="addButtonTapped:" destination="cnk-am-6zm" id="N6Q-Fx-nPo"/>
+                                <action selector="addButtonTapped:" destination="cnk-am-6zm" id="f4J-5h-Iwh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
