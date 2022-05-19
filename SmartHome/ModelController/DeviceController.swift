@@ -36,6 +36,11 @@ class DeviceController {
         device.isOn.toggle()
         saveDevices()
     }
+    func toggleAllDevicesOn(on: Bool) {
+        for device in devices {
+            device.isOn = on
+        }
+    }
     
     /// Persists the device controllers array of Devices to disk
     func saveDevices() {

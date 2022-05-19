@@ -14,6 +14,19 @@ class DevicesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.deviceController = DeviceController()
+        NotificationCenter.default.addObserver(self, selector: #selector(turnAllDevicesOn), name: TurnOnAllNotificationName, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(turnAllDevicesOff), name: TurnOffAllNotificationName, object: nil)
+    }
+    
+    @objc func turnAllDevicesOn() {
+        print("Turning all devices on")
+        deviceController.toggleAllDevicesOn(on: true)
+        tableView.reloadData()
+    }
+    @objc func turnAllDevicesOff() {
+        print("Turning all devices off")
+        deviceController.toggleAllDevicesOn(on: false)
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source

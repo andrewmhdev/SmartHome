@@ -9,7 +9,7 @@ import UIKit
 
 //MARK: global property
 let TurnOnAllNotificationName = Notification.Name(rawValue: "TurnOnAllDevicesNotification")
-let TurnAllOffNotificationName = Notification.Name(rawValue: "TurnOffAllDevicesNotification")
+let TurnOffAllNotificationName = Notification.Name(rawValue: "TurnOffAllDevicesNotification")
 
 class ToggleAllDevicesViewController: UIViewController {
 
@@ -20,9 +20,11 @@ class ToggleAllDevicesViewController: UIViewController {
     
     @IBAction func turnAllOnButtonTapped(_ sender: Any) {
         NotificationCenter.default.post(name: TurnOnAllNotificationName, object: nil)
+        
     }
     
     @IBAction func turnAllOffButtonTapped(_ sender: Any) {
-        NotificationCenter.default.post(name: TurnAllOffNotificationName, object: nil)
+        NotificationCenter.default.post(name: TurnOffAllNotificationName, object: nil)
+        
     }
 }
